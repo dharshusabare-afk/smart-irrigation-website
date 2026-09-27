@@ -1,0 +1,393 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --dark: #071d24;
+    --deep: #0b3039;
+    --green: #64d59a;
+    --cyan: #72dce8;
+    --light: #eefaf7;
+    --white: #ffffff;
+    --muted: #b9d0d1;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    color: var(--dark);
+    background: var(--light);
+}
+
+.hero {
+    min-height: 690px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    
+    background:
+    linear-gradient(rgba(3, 24, 31, 0.65), rgba(5, 63, 73, 0.75)),
+    url("/static/rain-field.png");
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 78% 75%, rgba(114,220,232,.16), transparent 24%),
+        linear-gradient(to bottom, transparent, rgba(2,15,19,.45));
+    pointer-events: none;
+}
+
+nav {
+    height: 82px;
+    max-width: 1180px;
+    margin: auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+        
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: var(--green);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    opacity: .88;
+}
+
+.hero-content {
+    max-width: 1180px;
+    margin: 70px auto 0;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1.25fr .75fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+}
+
+.eyebrow {
+    letter-spacing: 2.5px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--green);
+    margin-bottom: 16px;
+}
+
+.hero h1 {
+    font-size: clamp(50px, 7vw, 82px);
+    line-height: .98;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--cyan);
+}
+
+.hero-text > p:not(.eyebrow) {
+    max-width: 620px;
+    color: #c8dddd;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+.primary-btn,
+.predict-btn {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 16px 25px;
+    border-radius: 12px;
+    border: 0;
+    background: var(--green);
+    color: #06251d;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.primary-btn:hover,
+.predict-btn:hover {
+    transform: translateY(-2px);
+}
+
+.weather-card {
+    min-height: 340px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 30px;
+    background: rgba(255,255,255,.10);
+    backdrop-filter: blur(14px);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 25px 80px rgba(0,0,0,.25);
+}
+
+.cloud {
+    font-size: 70px;
+}
+
+.weather-number {
+    font-size: 75px;
+    margin: 10px;
+}
+
+.weather-card h3 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.weather-card p {
+    color: var(--muted);
+}
+
+.rain-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.drop {
+    position: absolute;
+    top: -40px;
+    width: 1px;
+    background: linear-gradient(transparent, rgba(160,235,255,.85));
+    animation: rainFall linear infinite;
+}
+
+@keyframes rainFall {
+    to {
+        transform: translateY(760px) translateX(-80px);
+    }
+}
+
+.stats {
+    max-width: 1050px;
+    margin: -50px auto 70px;
+    position: relative;
+    z-index: 8;
+    background: white;
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(9,45,54,.12);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 30px;
+    gap: 20px;
+}
+
+.stats div {
+    text-align: center;
+    border-right: 1px solid #e4eeee;
+}
+
+.stats div:last-child {
+    border: 0;
+}
+
+.stats strong {
+    display: block;
+    font-size: 28px;
+    color: #0c7a68;
+}
+
+.stats span {
+    color: #708789;
+    font-size: 13px;
+}
+
+.predict-section {
+    max-width: 1050px;
+    margin: auto;
+    padding: 30px 24px 90px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-heading h2,
+.about h2 {
+    font-size: 44px;
+    color: var(--dark);
+    margin-bottom: 12px;
+}
+
+.section-heading > p:last-child {
+    color: #6c8183;
+}
+
+.form-card {
+    background: white;
+    padding: 28px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid #dceceb;
+    box-shadow: 0 12px 30px rgba(10,50,55,.05);
+}
+
+.form-card h3 {
+    margin-bottom: 22px;
+    color: #145a58;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+label {
+    color: #456466;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+input, select {
+    width: 100%;
+    margin-top: 8px;
+    padding: 13px 14px;
+    border: 1px solid #cfe0df;
+    border-radius: 10px;
+    outline: none;
+    background: #fbfefe;
+    font-size: 14px;
+}
+
+input:focus, select:focus {
+    border-color: #52bda0;
+    box-shadow: 0 0 0 3px rgba(82,189,160,.12);
+}
+
+.predict-btn {
+    width: 100%;
+    font-size: 16px;
+}
+
+.result-card {
+    margin-top: 30px;
+    background: linear-gradient(135deg, #073d40, #0c7067);
+    color: white;
+    border-radius: 25px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(5,65,60,.25);
+}
+
+.result-card p:first-of-type {
+    letter-spacing: 2px;
+    font-size: 12px;
+    color: #8ee8c0;
+    font-weight: 800;
+}
+
+.result-icon {
+    font-size: 55px;
+}
+
+.result-card h2 {
+    font-size: 55px;
+    margin: 8px 0;
+}
+
+.confidence {
+    color: #c7e4e0;
+}
+
+#recommendation {
+    margin: 18px auto 0;
+    max-width: 650px;
+    color: #dcefed;
+    line-height: 1.6;
+}
+
+.hidden {
+    display: none;
+}
+
+.about {
+    padding: 85px max(24px, calc((100% - 1050px)/2));
+    background: #dff4ef;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about > p {
+    color: #486b6d;
+    line-height: 1.9;
+    font-size: 17px;
+}
+
+footer {
+    background: #061a20;
+    color: #9bb4b6;
+    padding: 35px 20px;
+    text-align: center;
+    line-height: 2;
+    font-size: 13px;
+}
+
+@media (max-width: 800px) {
+    .hero-content,
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        margin-top: 40px;
+        gap: 35px;
+    }
+
+    .weather-card {
+        min-height: 250px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+        margin: -30px 20px 50px;
+    }
+
+    .stats div:nth-child(2) {
+        border-right: 0;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}
